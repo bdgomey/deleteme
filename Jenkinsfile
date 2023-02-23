@@ -16,6 +16,11 @@ pipeline {
                 echo '$DOCKER | docker login -u bjgomes --password-stdin'
             }
         }
+        stage('Push'){
+            steps {
+                sh 'docker push bjgomes/flaskapp'
+            }
+        }
     }
 }
 
