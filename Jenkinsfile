@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script{
                     withDockerRegistry(credentialsId: 'Docker') {
-                        docker push bjgomes/flaskapp
+                        docker.build('bjgomes/flaskapp').push('latest')
                     }
                 }
             }
