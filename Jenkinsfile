@@ -9,17 +9,12 @@ pipeline {
         }
         stage('Push image') {
             steps{
-                script{
-                    withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
-                    dockerImage.push()
-                    }
-                }
+                echo 'dckr_pat_5VARXbC8wv4wzaAAGUoXJThN6Co | docker login --username bjgomes --password-stdin'
             }
-
         }    
     }
 }
 
 
 
-dckr_pat_5VARXbC8wv4wzaAAGUoXJThN6Co
+// dckr_pat_5VARXbC8wv4wzaAAGUoXJThN6Co
