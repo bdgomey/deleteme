@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-    environment{
-        DOCKER = credentials('Docker')
-    }
     
     stages {
         stage('Build') {
@@ -11,14 +8,13 @@ pipeline {
                 sh 'docker build -t bjgomes/flaskapp .'
             }
         }
-        stage('Login'){
+        stage('Login and Push'){
             steps {
-                echo '$DOCKER | docker login -u bjgomes --password-stdin'
-            }
-        }
-        stage('Push'){
-            steps {
-                sh 'docker push bjgomes/flaskapp'
+                script{
+                    withDockerRegistry(credentialsId: 'Docker') {
+                        docker push bjgomes/flaskapp
+                    }
+                }
             }
         }
     }
