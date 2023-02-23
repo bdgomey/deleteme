@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    environment{
+        DOCKER = credentials('Docker')
+    }
+    
     stages {
         stage('Build') {
             steps {
@@ -9,7 +12,7 @@ pipeline {
         }
         stage('Push image') {
             steps{
-                echo 'dckr_pat_5VARXbC8wv4wzaAAGUoXJThN6Co | docker login --username bjgomes --password-stdin'
+                echo '$DOCKER | docker login --username bjgomes --password-stdin'
             }
         }    
     }
