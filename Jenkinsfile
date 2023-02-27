@@ -26,6 +26,7 @@ pipeline {
         stage('Kubernetes login'){
             steps{
                 script{
+                    //Exact same for everyone in the class.  Update kubeconfig in container
                     withAWS(credentials: 'AWS_Credentials', region: 'us-east-1') {
                         sh 'aws eks update-kubeconfig --region us-east-1 --name VETTEC'
                     }
