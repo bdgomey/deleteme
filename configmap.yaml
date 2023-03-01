@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::257248662189:role/eksctl-VETTEC-nodegroup-ng-1-NodeInstanceRole-FRUBERYH3R6P
+      username: system:node:{{EC2PrivateDNSName}}
+    - rolearn: arn:aws:iam::257248662189:role/AdminRole
+      username: admin
+      groups:
+        - system:masters
+
